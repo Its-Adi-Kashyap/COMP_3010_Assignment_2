@@ -1,0 +1,26 @@
+{
+      "0x00000249C1030EA0": {
+            "Name": "Muhamad",
+            "Password": "Lama",
+            "Session": "0x00000249C1030EA0",
+            "Tweets": []
+      },
+      "0x000001C8FC9DBD80": {
+            "Name": "Mumbo",
+            "Password": "Jumbo",
+            "Session": "0x000001C8FC9DBD80",
+            "Tweets": [
+                  "tweet",
+                  "Ohhh buttons!!!!"
+            ]
+      },
+      "0x000001D4FFD2BD80": {
+            "Name": "Timmy",
+            "Password": "12345",
+            "Session": "0x000001D4FFD2BD80",
+            "Tweets": [
+                  "I thik you fun",
+                  "Is earth flat!!!??"
+            ]
+      }
+}

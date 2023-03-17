@@ -1,0 +1,62 @@
+<html><head>
+    <style>
+  table {
+  border-collapse: collapse;
+  }
+  table, th, td {
+  border: 1px solid;
+  }
+  
+  
+  </style>
+    <script>
+      function myAlert(i){
+          alert(i);
+      }
+      function doneBeenClicked(){
+        // this is a closure, gets variables
+        // from method it is in
+        function loadedEventCallback () {
+          var ip = oReq.responseText;
+          var asObj = JSON.parse(ip);
+          var theDiv = document.getElementById("fillHere");
+          let table_top= "<table><tr><td>ip</td><td>visits</td><td>Button</td></tr>";
+          let table_cont = "";
+          for (var x = 0; x < asObj.length; x++){
+              table_cont += "<tr><td>" + asObj[x]['ip'] + "</td><td> "+ asObj[x]['count'] + "</td>";
+              table_cont += "<td><button onClick='myAlert(" + x + ")'>my Button " + x + "</td></tr>";
+          
+          }
+          theDiv.innerHTML= table_top + table_cont + "</table>";
+  
+          var otherDiv = document.getElementById('topData');
+          otherDiv.innerText = "";
+        }
+  
+        function loadedEventCallback2 () {
+          var theDiv = document.getElementById("fillHere");
+          theDiv.innerText = "I was done clicked";
+  
+        }
+  
+        // basis from 
+        // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
+        // probably will not work from localhost!
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", loadedEventCallback);
+        // We want to get the IP address, but I don't want to talk too much about CORS!
+        oReq.open("GET ", "/api/tweet");
+        // hey, we can do this, but don't have to (in this case)
+        oReq.setRequestHeader("Accept","application/json");
+        oReq.withCredentials = true;
+        oReq.send();
+      }
+    </script>
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.1098.0" data-gr-ext-installed="">
+    <div id="topData">CLICK DAT BUTTON</div>
+    <button type="button" onclick="doneBeenClicked()">Do it!</button>
+    <div id="fillHere">Stuff will go here.</div>
+  
+  
+  </body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

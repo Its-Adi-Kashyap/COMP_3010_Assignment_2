@@ -1,0 +1,219 @@
+<html>
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 0px;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <h1>3010-eeter</h1>
+
+    <div id="the_divison">
+
+        <input type="text" id="Name" value="Username"><br><br>
+        <input type="text" id="Password" value="Password"><br><br>
+        <button onclick="logIn()">Log In</button>
+
+    </div>
+    <table id="tweetList"></table>
+</body>
+
+
+<script>
+
+
+    function Logout() {
+
+        function exit() {
+
+            var body = log_out.responseText;
+            var div = document.getElementById("login")
+            var table = document.getElementById("tweetList")
+
+            div.innerHTML = body
+            table.innerHTML = ""
+
+            
+            last_get = new XMLHttpRequest();
+            last_get.open("GET", "/");
+            last_get.withCredentials = true;
+
+            last_get.send();
+
+        }
+
+        log_out = new XMLHttpRequest();
+
+        log_out.addEventListener("load", exit);
+        log_out.open("DELETE", "/api/login");
+        log_out.withCredentials = true;
+
+        log_out.send();
+
+    }
+
+
+
+
+    function Delete(i) {
+
+        function refreshList() {
+            
+            if(del_tweet.status == 502){
+                document.getElementById("the_divison").innerHTML = del_tweet.responseText
+                document.getElementById("tweetList").innerHTML = ""
+            }
+            else{
+                get_req = new XMLHttpRequest();
+                get_req.addEventListener("load", displayTweet);
+                get_req.open("GET", "/api/tweet");
+                get_req.withCredentials = true;
+
+                get_req.send();
+
+            }
+        }
+
+
+        del_tweet = new XMLHttpRequest();
+        del_tweet.addEventListener("load", refreshList);
+
+        del_tweet.open("DELETE", "/api/tweet/" + i)
+        del_tweet.withCredentials = true;
+
+        del_tweet.send();
+
+
+    }
+
+    function Tweet() {
+
+        function refreshList() {
+
+            get_req = new XMLHttpRequest();
+            get_req.addEventListener("load", displayTweet);
+            get_req.open("GET", "/api/tweet");
+            get_req.withCredentials = true;
+
+            get_req.send();
+
+        }
+
+
+        var add_t = new XMLHttpRequest();
+
+
+        add_t.addEventListener("load", refreshList);
+        add_t.open("POST", "/api/tweet");
+        add_t.withCredentials = true;
+
+        data = (document.getElementById("Tweet").value);
+
+        add_t.send(data);
+
+
+    }
+
+
+    function displayTweet() {
+
+        if (get_req.status = 200) {
+            var t_dict = JSON.parse(get_req.responseText);
+
+            var table = document.getElementById("tweetList")
+
+            var html = "";
+
+            for (var key in t_dict) {
+
+                tweet_list = t_dict[key]["Tweets"];
+
+                user_name = t_dict[key]["Name"];
+
+                if (document.cookie.split("=")[0] == key) {
+
+                    for (var i = 0; i < tweet_list.length; i++) {
+                        html += "<tr><td>" + tweet_list[i] + "</td><td>" + user_name + "</td><td><button value=" + i.toString() + " onclick=Delete(" + i.toString() + ")>Delete</button></td></tr>"
+                    }
+
+                }
+                else {
+                    for (var i = 0; i < tweet_list.length; i++) {
+                        html += "<tr><td>" + tweet_list[i] + "</td><td>" + user_name + "</td></tr>"
+                    }
+
+                }
+
+            }
+            table.innerHTML = html;
+            sessionStorage.setItem("table", html);
+        }
+
+
+    }
+
+    if (sessionStorage.page && document.cookie) {
+        var the_div = document.getElementById("the_divison")
+        var table = document.getElementById("tweetList")
+
+
+        the_div.innerHTML = sessionStorage.getItem("page")
+        table.innerHTML = sessionStorage.getItem("table")
+    }
+
+    function logIn() {
+
+
+        function changeFormat() {
+
+
+            var response = (oReq.responseText);
+
+            var space = document.getElementById("the_divison");
+            space.innerHTML = response
+
+
+            if (oReq.status == 200) {
+                get_req = new XMLHttpRequest();
+                get_req.addEventListener("load", displayTweet);
+                get_req.open("GET", "/api/tweet");
+                get_req.withCredentials = true
+                get_req.send();
+                sessionStorage.setItem("page", response)
+
+            }
+
+
+        }
+
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", changeFormat);
+        oReq.open("POST","/api/login");
+        oReq.withCredentials = true;
+
+        var data = "Name=" + (document.getElementById("Name").value) + "&Password=" + (document.getElementById("Password").value)
+
+        oReq.send(data);
+
+
+
+    }
+
+</script>
+
+
+
+</html>
