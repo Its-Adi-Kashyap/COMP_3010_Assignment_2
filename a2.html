@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>a2</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="multi-threaded-webserver">Multi-threaded webserver</h1>
+<ul>
+<li>Remember to complete the Honesty Declaration in UMLearn</li>
+<li>As a reminder, copying material (text or code) is plagiarism and academic dishonesty (see the Science links in the ROASS page for details on what constitutes academic dishonesty in written/research work).</li>
+</ul>
+<p>You must use socket libraries directly to do this assignment. Open a socket, listen to it, reply accordingly. No higher-level libraries are permitted.</p>
+<p>You may write this in any language you choose, but the code must compile (if relevant) and run on the aviary machines.</p>
+<h2 id="part-1-api-webserver---3010-eeter">Part 1 API Webserver - 3010-eeter</h2>
+<p>Create a multi-threaded web server. Web server must be able to find files on a file system, and serve those files to a HTTP client.</p>
+<p>Paths that are prefixes with <code>/api/</code> are API calls that run code. All other paths are searched on a local filesystem for files. If the files or API paths do not exist, or have problems, appropriate error messages should be returned. I have provided some test web content to serve. This is also how you should be serving your website to show Tweets.</p>
+<p>Your application should not crash, and always provide <em>a</em> response, even if it is just an error code.</p>
+<p>You may store your tweets on the server however you would like, but the data must be available from all threads on the system, and be persistent through restarts.</p>
+<p>Create a web page that is used to interact with your Twitter system. All users can create tweets, and view all tweets. Your page should <strong>not</strong> refresh at any point. All communication should be done with XHR. Hint: don’t use “on submit” features on forms - they refresh the page.</p>
+<p>We will test your site on Google Chrome.</p>
+<h3 id="api-paths">API paths</h3>
+<ul>
+<li><code>GET /api/tweet</code> - get a list of all memos</li>
+<li><code>POST /api/tweet</code> - create a new memo on the server. This message will have a body that is json.</li>
+<li><code>POST /api/login</code> - Log into the system, return a 200, and sets cookies</li>
+<li><code>DELETE /api/login</code> - Log out of the system, remove the cookie</li>
+<li><code>DELETE /api/tweet/&lt;id&gt;</code> - Delete a tweet. You can only delete your own tweets. You should have a ‘delete’ button on the rows of <strong>your tweets only</strong>. Be sure to do the check of if you can delete a post in the back-end.</li>
+</ul>
+<p>Only users with cookies should be able to do anything with tweets (view, post, or delete).</p>
+<h3 id="permitted-libraries">Permitted libraries</h3>
+<p>These are the libraries I used to complete the assignment. If you want to use a library that is not on this list, ask in the discussion forum.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> threading</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> uuid</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tempfile</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3 <span class="co"># if you want to use sqlite, this is not expected.</span></span></code></pre></div>
+<h2 id="part-2-system-test-in-c">Part 2 System test in <code>C</code></h2>
+<p>Write a screen scraper for the twitter system you wrote for Part 1.</p>
+<p>Your screen scraper should accept a command-line argument to indicate who you are (use this for your cookie value) and what you would like to write as a memo. For instance:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./a2</span> Rob mypasswd Just setting up my 3010ttr</span></code></pre></div>
+<p>Your screen scraper must be in <code>C</code>. Use an <code>assert</code> statement to verify the memo was accepted properly, by requesting the note list link a second time with a GET query, and checking the results of the api server. So, you will have a <code>POST</code> to add the memo, and a <code>GET</code> to verify it is there with the given text.</p>
+<p>You must have a <code>makefile</code> to build your program. Do not submit any binaries.</p>
+<h2 id="part-3-complete-system-test">Part 3 Complete System test</h2>
+<p>Do the above an any programming language that you’d like provided it runs on the aviary lab machines, and also add the following tests. Alternatively, do the below in <code>C</code>, too!</p>
+<p>These must be done directly with sockets, no higher-level socket libraries are permitted.</p>
+<p>After the tweet is added, attempt to <code>DELETE</code> it with a different user, and assert that deletion fails. Proceed to <code>DELETE</code> it with the user, assert the post is gone.</p>
+<p>You must use sockets manually (as seen in class) to fetch data from the web server. You may use the example from class as a starting point.</p>
+<h2 id="handin">Handin</h2>
+<p>Hand in your code, with an associated <code>readme.md</code>. Explain how to run your code - possibly including port numbers we should expect, and highlight any oddities in your progress.</p>
+<p>Using <code>handin</code>: assuming you have a folder named <code>my_assignment_2_folder</code>. Go to its parent folder (so you can see <code>my_assignment_2_folder</code> in <code>ls</code>) and run <code>handin 3010 a2 my_assignment_2_folder</code></p>
+<p>If you did part 3 in C, you’ll only have 1 “system test” file. State in your readme that’s what you did!</p>
+</body>
+</html>

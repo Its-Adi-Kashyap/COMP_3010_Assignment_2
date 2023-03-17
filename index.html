@@ -1,0 +1,102 @@
+<html>
+<head>
+    <style>
+        table {
+        border-collapse: collapse;
+        }
+        table, th, td {
+        border: 1px solid;  
+        }
+   </style>
+   
+   <script>
+
+        function displayTweet(){
+
+            var t_list= JSON.parse(get_req.responseText);
+
+            var table = document.getElementById("tweetList")
+            var html = "";
+            for (var i = 0; i < t_list.length; i++){
+                html += "<tr><td>" + t_list[i] + "</tr></td>";
+
+            }
+            table.innerHTML = html;
+
+
+        }
+
+
+        function logIn(){
+
+            
+
+            function getTweet(){
+                
+                var response= (oReq.responseText);
+
+                var space= document.getElementById("the_divison");
+
+                space.innerHTML= response
+                
+                get_req = new XMLHttpRequest();
+                get_req.addEventListener("load",displayTweet);
+                get_req.open("GET","http://127.0.0.1:8165/api/tweet");
+                get_req.withCredentials=true;
+
+                get_req.send();
+
+
+                }
+            //     var table = document.getElementById("tweetList");
+            //     table.innerHTML = html
+
+            var oReq = new XMLHttpRequest();
+            oReq.addEventListener("load",getTweet);
+            oReq.open("POST","http://127.0.0.1:8165/api/login");
+            oReq.withCredentials=true;
+            
+            var data = "Name="+(document.getElementById("Name").value)+"&Password="+(document.getElementById("Password").value)
+
+            oReq.send(data);
+            
+
+
+        }   
+
+        function Tweet(){
+
+            var add_t = new XMLHttpRequest();
+
+
+            add_t.addEventListener("load",displayTweet);
+            add_t.open("POST","http://127.0.0.1:8165/api/tweet");
+            add_t.withCredentials=true;
+            
+            data = document.getElementById("Tweet").value;
+
+            add_t.send(data);
+
+
+        }
+
+
+
+   </script>
+
+
+</head>
+
+<body>
+    <h1>3010-eeter</h1>
+
+    <div id = "the_divison">
+        <input type="text" id="Name" value="Username"><br><br>
+        <input type="text" id="Password" value="Password"><br><br>
+        <button onclick="logIn()">Log In</button>
+    </div>
+    <table id="tweetList"></table>
+
+</body>
+
+</html>
